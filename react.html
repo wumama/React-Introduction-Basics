@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>react</title>
+	<script src="./build/react.js"></script>
+	<script src="./build/react-dom.js"></script>
+	<script src="./build/browser.min.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+	<script type="text/babel">
+		ReactDOM.render(
+			<h1>hello,world!</h1>,
+			document.getElementById('example')
+		)
+	</script>
+
+	<div id="example1"></div>
+	<script type="text/babel">
+	    var arr = ['html','JavaScript','react']
+		ReactDOM.render(
+			<div>
+				{
+				  arr.map(function(arr){
+					return <div>{arr}语言！</div>
+				  })
+				}
+			</div>,
+			document.getElementById('example1')
+		)
+	</script>
+
+	<div id="example2"></div>
+	<script type="text/babel">
+		var arr1 = [
+			<h1>hello，world!</h1>,
+			<h2>react</h2>
+		]
+		ReactDOM.render(
+			<div>{arr1}</div>,
+			document.getElementById('example2')
+		)
+	</script>
+
+	<div id="example3"></div>
+    <script type="text/babel">
+      var Message = React.createClass({
+        render: function(){
+          return <h1>hello,{this.props.name},{this.props.className},{this.props.htmlFor}</h1>
+        }
+      })
+
+      ReactDOM.render(
+        <Message name="xuezhiqian" className="123" htmlFor="25"/>,
+        document.getElementById('example3')
+      )
+    </script>
+
+    <div id="example4"></div>
+    <script type="text/babel">
+      var PropsList = React.createClass({
+      render: function(){
+        return(
+          <ol>
+            {
+              React.Children.map(this.props.children,function(child){
+                return <li>{child}</li>
+              })
+            }
+        </ol>
+       )
+      }
+    })
+
+    ReactDOM.render(
+      <PropsList>
+          <span>hello</span>
+          <span>world</span>
+      </PropsList>,
+      document.getElementById('example4')
+    )
+    </script>
+    
+
+    <div id="example5"></div>
+    <script type="text/babel">
+	  var Mytitle = React.createClass({
+	  propTypes: {
+	    title: React.PropTypes.string.isRequired,
+	  },
+	  render: function(){
+	    return <h1>{this.props.title}</h1>
+	  }
+	})
+
+	var data = '123'
+	ReactDOM.render(
+		<Mytitle title = {data}/>,
+	    document.getElementById('example5')
+	)
+    </script>
+
+    <div id="example6"></div>
+    <script type="text/babel">
+	var Title = React.createClass({
+	getDefaultProps : function(){
+	    return{
+	      title: 'my name is title'
+	    }
+	  },
+	  render: function(){
+	    return <h2>{this.props.title}</h2>
+	  }
+	})
+
+	ReactDOM.render(
+	  <Title />,
+	  document.getElementById('example6')
+	)
+    </script>
+
+    <div id="example7"></div>
+    <script type="text/babel">
+      var MyComponent = React.createClass({
+	  handleClick: function() {
+	    this.refs.myTextInput.focus()
+	  },
+	  render: function() {
+	    return (
+	      <div>
+	        <input type="text" ref="myTextInput" />
+	        <input type="button" value="Focus the text input" onClick={this.handleClick} />
+	      </div>
+	    )
+	  }
+	})
+
+	ReactDOM.render(
+	  <MyComponent />,
+	  document.getElementById('example7')
+	);
+    </script>
+
+</body>
+</html>
